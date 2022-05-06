@@ -33,7 +33,7 @@ Plug 'rust-lang/rust.vim'
 
 " Other
 Plug 'dense-analysis/ale'
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
 call plug#end()
@@ -86,6 +86,7 @@ let g:airline_symbols.linenr = ''
 " =============================================================================
 " ALE config
 " =============================================================================
+set omnifunc=ale#completion#OmniFunc
 let g:ale_linters = {'rust': ['analyzer']}
 
 let g:ale_fixers = {'rust': ['rustfmt', 'trim_whitespace', 'remove_trailing_lines']}
@@ -95,6 +96,10 @@ let g:ale_completion_enabled = 1
 " Disable rustfmt for rust.vim
 let g:rustfmt_autosave = 0
 
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = ''
+let g:ale_sign_column_always = 1
+let g:ale_disable_lsp = 1 " for LSP with coc
 " =============================================================================
 " NERTree config
 " =============================================================================
@@ -163,6 +168,10 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " Go to definition on CTRL + left-click
 nnoremap <C-LeftMouse> :ALEGoToDefinition<CR>
+" Auto completion
+inoremap <silent><expr><TAB>
+    \ pumvisible() ? "\<C-n>" : "\<TAB>"
+
 " Tagbar on F8
 nmap <F8> :TagbarToggle<CR>i
 

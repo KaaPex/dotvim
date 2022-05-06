@@ -1,5 +1,6 @@
 {
+	"diagnostic.displayByAle": true,
 	"rust-analyzer": {
-		"enabled": false
+		"enabled": true
 	}
 }
